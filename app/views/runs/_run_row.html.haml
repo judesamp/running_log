@@ -1,0 +1,9 @@
+%td= pretty_date(run.run_date)
+%td= pretty_time(run.run_time)
+%td= run.distance
+%td= pretty_pace(run.per_mile_pace)
+%td= button_to "View Details", run_path(run), class: "btn btn-default", method: :get, :remote=>true
+%td
+  %button{id: "edit_button", class: "btn btn-default", data: {"run-id" => run.id}}
+    Edit 
+%td= button_to "Delete", run_path(run), class: "btn btn-default", method: :delete, :remote=>true

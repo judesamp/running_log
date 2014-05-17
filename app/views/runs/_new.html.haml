@@ -1,0 +1,6 @@
+.close.glyphicon.glyphicon-remove
+
+%h1 Create a New Run
+
+= form_for @new_run, remote: true do |f|
+  = render 'form', f: f

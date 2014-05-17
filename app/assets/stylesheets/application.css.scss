@@ -1,0 +1,117 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= bootstrap.min
+ */
+
+.modal {
+  display: none; 
+  position: absolute; 
+  left: 25%; 
+  top: 10%; 
+  padding: 25px; 
+  border: 2px solid black;
+  background-color: #ffffff;
+  width: 50%;
+  z-index: 100; 
+}
+
+#fade {
+  display: none;  
+  position: absolute; 
+  left: 0%; 
+  top: 0%;
+  background-color: black;
+  -moz-opacity: 0.7; 
+  opacity: .70;
+  filter: alpha(opacity=70);
+  width: 100%;
+  height: 100%;
+  z-index: 90;
+}
+
+.glyphicon {
+  font-family:'Glyphicons Halflings' !important;
+  src:  url(font-path('glyphicons-halflings-regular.eot') + "?#iefix") format('embedded-opentype'),
+        url(font-path('glyphicons-halflings-regular.woff')) format('woff'), 
+        url(font-path('glyphicons-halflings-regular.ttf'))  format('truetype'),
+        url(font-path('glyphicons-halflings-regular.svg') + "#MyFont") format('svg');
+ }
+
+ .table>thead>tr>th {
+  border-bottom: 0;
+ }
+
+ #create_button {
+  border: 1px solid rgba(0,0,0,0.1);
+ }
+
+ #button_link {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+ }
+
+ .stats_table {
+  margin-bottom: 0;
+ }
+
+ .well {
+  padding: 5px 5px 10px 5px;
+  margin-bottom: 50px;
+  margin-top: 30px;
+ }
+
+ .stat_header {
+  padding: 0;
+ }
+
+ .stat_title {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: inline-block;
+ }
+
+ .table>thead>tr>th {
+  padding: 4px;
+ }
+
+ .run_title {
+  margin-top: 5px;
+  margin-bottom: 22px;
+ }
+
+ .stat_data {
+  padding-left: 22px !important;
+  padding-bottom: 0 !important;
+  padding-top: 4px !important;
+  margin-left: 5px !important
+ }
+
+ .stat_dropdown {
+  display: inline-block;
+ }
+
+ .dropdown_link {
+  padding: 0 0 0 10px !important;
+  position: relative !important;
+  top: 4px;
+ }
+
+ .run_cell {
+  padding-bottom: 3px !important;
+  position: relative;
+  top: 10px;
+ }
+

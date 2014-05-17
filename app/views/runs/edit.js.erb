@@ -1,0 +1,4 @@
+$('#edit_modal').html('');
+$('#edit_modal').append("<%= escape_javascript render(:partial => 'runs/edit', :locals => { :run => @run }) %>");
+$('#fade').show();
+$('#edit_modal').show();

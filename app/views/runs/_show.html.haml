@@ -1,0 +1,10 @@
+.close.glyphicon.glyphicon-remove
+
+%h1 Your Run
+
+%p= pretty_date(run.run_date)
+%p= pretty_time(run.run_time)
+%p= run.distance
+%p= pretty_pace(run.per_mile_pace)
+%p= run.route_name
+%p= run.notes

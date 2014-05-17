@@ -1,0 +1,5 @@
+$('#create_modal').hide();
+$('#create_modal').html('');
+$('#fade').hide();
+$('tbody').append("<%= escape_javascript render(:partial => 'runs/run_row_create', :locals => { :run => @new_run })%>");
+
