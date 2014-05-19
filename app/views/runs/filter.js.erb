@@ -1,0 +1,10 @@
+$('.stat_title').fadeOut('slow');
+$('.stat_row').fadeOut('slow', function() {
+
+  $('.filter_name').html("<%= @filter %>");
+  $('.stat_row').html("<%= escape_javascript render(:partial => 'runs/stat_row_filtered', :locals => { :runs => @filtered_runs })%>");
+
+});
+
+$('.stat_row').fadeIn();
+$('.stat_title').fadeIn();

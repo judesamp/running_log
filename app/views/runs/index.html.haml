@@ -1,35 +1,37 @@
 .well
-  %h4.stat_title Your Stats
+  %h4.stat_title
+    %span.filter_name Lifetime
+    Stats 
   .nav.nav-pills.stat_dropdown
     %li.dropdown
       %a.dropdown_link.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-        Sort by
+        Filter by
         %span.caret
       %ul.dropdown-menu
         %li
-          %a{href: "#"} The Last Seven Days
+          %a{id: "last_seven", href: "#"} The Last Seven Days
         %li
-          %a{href: "#"} The Last Thirty Days
+          %a{id: "last_thirty", href: "#"} The Last Thirty Days
         %li
-          %a{href: "#"} This Year's Stats
+          %a{id: "year", href: "#"} This Year's Stats
         %li
-          %a{href: "#"} Lifetime Stats
+          %a{id: "lifetime", href: "#"} Lifetime Stats
   %table.table.stats_table  
     %thead
       %tr
         %th.stat_header
-          .glyphicon.glyphicon-remove 
+          .glyphicon.glyphicon-th 
           Total Runs
         %th.stat_header
-          .glyphicon.glyphicon-remove 
+          .glyphicon.glyphicon-dashboard 
           Total Time
         %th.stat_header
-          .glyphicon.glyphicon-remove
+          .glyphicon.glyphicon-road
           Total Distance
         %th.stat_header
-          .glyphicon.glyphicon-remove 
+          .glyphicon.glyphicon-time
           Average Pace
-      %tr
+      %tr.stat_row
         %td.stat_data= "#{Run.count} runs"
         %td.stat_data= pretty_time(Run.total_time)
         %td.stat_data= "#{Run.total_distance}m"
@@ -38,33 +40,32 @@
 .col-md-3.col-sm-3
   %h1.run_title Your Runs
 .col-md-9.col-sm-9
-  =link_to "Create a New Run", new_run_path, remote: true, id: 'create_button', class: "btn btn-lg btn-block btn-default"
+  =link_to "Create a New Run", new_run_path, remote: true, id: 'create_button', class: "btn btn-lg btn-block btn-warning"
 %table.table
   %thead
     %tr
-      %th Date
-      %th Time
-      %th Distance
-      %th Pace/mile
-  %tbody
-    - @runs.each do |run|
-      %tr{id: run.id}
-        %td.run_cell= pretty_date(run.run_date)
-        %td.run_cell= pretty_time(run.run_time)
-        %td.run_cell= run.distance
-        %td.run_cell= pretty_pace(run.per_mile_pace)
-        %td= button_to "View Details", run_path(run), class: "btn btn-default", method: :get, :remote=>true
-        %td
-          %button{id: "edit_button", class: "btn btn-default", data: {"run-id" => run.id}}
-            Edit 
-        %td= button_to "Delete", run_path(run), class: "btn btn-default", method: :delete, :remote=>true
-     
+      %th
+        .glyphicon.glyphicon-calendar
+        Date
+      %th
+        .glyphicon.glyphicon-dashboard
+        Time
+      %th 
+        .glyphicon.glyphicon-road
+        Distance
+      %th 
+        .glyphicon.glyphicon-time
+        Pace/mile
+  %tbody#run_table_body
+    = render 'runs/run_table_body'
+.pagination_nav
+  #paginator
+    = paginate @runs, remote: true
+   
+#show_modal.modal_custom
 
+#create_modal.modal_custom
 
-#show_modal.modal
-
-#create_modal.modal
-
-#edit_modal.modal
+#edit_modal.modal_custom
 
 #fade

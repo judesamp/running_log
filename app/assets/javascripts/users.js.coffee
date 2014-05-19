@@ -9,10 +9,42 @@ $ ->
     
   $(document).on "click", "#fade", ->
     $("#fade").hide();
-    $(".modal").hide();
+    $(".modal_custom").hide();
     return
 
   $(document).on "click", ".close", ->
     $("#fade").hide();
-    $(".modal").hide();
+    $(".modal_custom").hide();
+    return
+
+  $(document).on "click", "#last_seven", (e) ->
+    e.preventDefault();
+    value = $(this).attr('id')
+    $.ajax '/runs/filter',
+      type: 'GET',
+      data: { "filter": {"type": value} }
+    return
+
+  $(document).on "click", "#last_thirty", (e)  ->
+    e.preventDefault();
+    value = $(this).attr('id')
+    $.ajax '/runs/filter',
+      type: 'GET',
+      data: { "filter": {"type": value} }
+    return
+
+  $(document).on "click", "#year",  (e) ->
+    e.preventDefault();
+    value = $(this).attr('id')
+    $.ajax '/runs/filter',
+      type: 'GET',
+      data: { "filter": {"type": value} }
+    return
+
+  $(document).on "click", "#lifetime",  (e) ->
+    e.preventDefault();
+    value = $(this).attr('id')
+    $.ajax '/runs/filter',
+      type: 'GET',
+      data: { "filter": {"type": value} }
     return

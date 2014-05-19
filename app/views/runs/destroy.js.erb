@@ -1,1 +1,2 @@
 $('#<%= @id %>').remove();
+$('.stat_row').html("<%= escape_javascript render(:partial => 'runs/stat_row')%>");

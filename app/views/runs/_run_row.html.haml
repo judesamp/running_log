@@ -1,7 +1,7 @@
-%td= pretty_date(run.run_date)
-%td= pretty_time(run.run_time)
-%td= run.distance
-%td= pretty_pace(run.per_mile_pace)
+%td.stat_data.run_cell= pretty_date(run.run_date)
+%td.stat_data.run_cell= pretty_time(run.run_time)
+%td.stat_data.run_cell= run.distance
+%td.stat_data.run_cell= pretty_pace(run.per_mile_pace)
 %td= button_to "View Details", run_path(run), class: "btn btn-default", method: :get, :remote=>true
 %td
   %button{id: "edit_button", class: "btn btn-default", data: {"run-id" => run.id}}

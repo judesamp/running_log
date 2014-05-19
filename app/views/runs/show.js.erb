@@ -1,5 +1,5 @@
 $('#show_modal').html('');
 $('#show_modal').append("<%= escape_javascript render(:partial => 'runs/show', :locals => { :run => @run }) %>");
 $('#fade').show();
-$('#show_modal').show();
+$('#show_modal').slideDown(300);
 

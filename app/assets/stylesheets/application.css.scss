@@ -15,7 +15,7 @@
  *= bootstrap.min
  */
 
-.modal {
+.modal_custom {
   display: none; 
   position: absolute; 
   left: 25%; 
@@ -24,6 +24,7 @@
   border: 2px solid black;
   background-color: #ffffff;
   width: 50%;
+  height: auto;
   z-index: 100; 
 }
 
@@ -113,5 +114,25 @@
   padding-bottom: 3px !important;
   position: relative;
   top: 10px;
+ }
+
+ .blank_row {
+  height: 52px;
+  background: #F5F5F5;
+ }
+
+ .pagination {
+  width: 325px;
+ }
+
+ .pagination_nav {
+    text-align: right;
+    margin-right: 7%;
+ }
+
+ .paginator_link {
+  margin-bottom: 20px;
+  margin-right: 7%;
+  width: 130px;
  }
 

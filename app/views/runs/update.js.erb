@@ -1,3 +1,4 @@
 $('#edit_modal').hide();
-
+$('#fade').hide();
+$('.stat_row').html("<%= escape_javascript render(:partial => 'runs/stat_row')%>");
 $('#<%= @run.id %>').html("<%= escape_javascript render(:partial => 'runs/run_row', :locals => { :run => @run })%>");

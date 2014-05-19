@@ -18,7 +18,7 @@ class Run < ActiveRecord::Base
 
   def self.total_distance
     distances = Run.all.pluck(:distance)
-    distances.reduce(:+)
+    distances.reduce(:+).round(2)
   end
 
   def self.all_time_per_mile_pace

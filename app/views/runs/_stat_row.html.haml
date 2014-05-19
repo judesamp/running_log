@@ -1,0 +1,4 @@
+%td.stat_data= "#{Run.count} runs"
+%td.stat_data= pretty_time(Run.total_time)
+%td.stat_data= "#{Run.total_distance}m"
+%td.stat_data= pretty_pace(Run.all_time_per_mile_pace)

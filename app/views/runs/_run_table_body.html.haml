@@ -1,0 +1,26 @@
+
+- @runs.each do |run|
+  %tr{id: run.id}
+    %td.stat_data.run_cell= pretty_date(run.run_date)
+    %td.stat_data.run_cell= pretty_time(run.run_time)
+    %td.stat_data.run_cell= run.distance
+    %td.stat_data.run_cell= pretty_pace(run.per_mile_pace)
+    %td= button_to "View Details", run_path(run), class: "btn btn-default", method: :get, :remote=>true
+    %td
+      %button{id: "edit_button", class: "btn btn-default", data: {"run-id" => run.id}}
+        Edit 
+    %td= button_to "Delete", run_path(run), class: "btn btn-default", method: :delete, :remote=>true
+    
+- if @run_count < 6 
+  - additional_rows = 6 - @run_count
+  - additional_rows.times do |row|
+    %tr.blank_row
+      %td
+      %td
+      %td
+      %td
+      %td
+      %td
+      %td
+
+    
