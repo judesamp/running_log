@@ -8,8 +8,11 @@
     %td= button_to "View Details", run_path(run), class: "btn btn-default", method: :get, :remote=>true
     %td
       %button{id: "edit_button", class: "btn btn-default", data: {"run-id" => run.id}}
-        Edit 
-    %td= button_to "Delete", run_path(run), class: "btn btn-default", method: :delete, :remote=>true
+        Edit
+    %td
+      %button{class: "btn btn-default delete_button", data: {"run-id" => run.id}}
+        Delete 
+    
     
 - if @run_count < 6 
   - additional_rows = 6 - @run_count

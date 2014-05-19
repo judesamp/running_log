@@ -19,7 +19,9 @@ class RunsController < ApplicationController
     @new_run = Run.new(run_params)
     if @new_run.save
       respond_to do |format|
-        format.js
+        processed_date = pretty_date(@new_run.run_date)
+        average_pace = pretty_pace(@new_run.per_mile_pace)
+        format.js { render json: { calculated_pace: average_pace, pretty_date: processed_date, data: @new_run} }
         format.html { redirect_to runs_path }
       end 
     else
@@ -63,7 +65,8 @@ class RunsController < ApplicationController
     @run = Run.find(params[:id])
     if @run.update(run_params)
       respond_to do |format|
-        format.js
+        puts @run.inspect
+        format.js {render json: @run}
         format.html { redirect_to runs_path }
       end
     else
@@ -79,7 +82,7 @@ class RunsController < ApplicationController
     @id = @run.id
     if @run.destroy
       respond_to do |format|
-        format.js
+        format.js {render plain: '1'}
         format.html {redirect_to runs_path}
       end
     else
