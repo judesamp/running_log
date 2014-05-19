@@ -2,5 +2,17 @@ $('#create_modal').hide();
 $('#create_modal').html('');
 $('#fade').hide();
 $('.stat_row').html("<%= escape_javascript render(:partial => 'runs/stat_row')%>");
+
+$('#fade').hide();
+$('#run_table_body').fadeOut('slow', function() {
+
+  $('#run_table_body').html("<%= escape_javascript render(:partial => 'runs/run_table_body', :locals => { :run_count => @run_count } )%>");
+  $('#paginator').html("<%= escape_javascript(paginate(@runs, :remote => true)) %>");
+
+});
+
+$('#run_table_body').fadeIn();
+
+
 $('tbody').append("<%= escape_javascript render(:partial => 'runs/run_row_create', :locals => { :run => @new_run })%>");
 

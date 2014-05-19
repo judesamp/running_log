@@ -18,13 +18,21 @@ class Run < ActiveRecord::Base
 
   def self.total_distance
     distances = Run.all.pluck(:distance)
-    distances.reduce(:+).round(2)
+    if distances.length > 0
+      distances.reduce(:+).round(2)
+    else
+      0
+    end
   end
 
   def self.all_time_per_mile_pace
     run_time = total_time
     distance = total_distance
-    run_time / distance
+    if distance > 0 && run_time > 0
+      run_time / distance
+    else
+      0
+    end
   end
 
 end

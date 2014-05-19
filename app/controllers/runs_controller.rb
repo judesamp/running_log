@@ -13,28 +13,13 @@ class RunsController < ApplicationController
     @new_run = Run.new
   end
 
-  # def create
-  #   @new_run = Run.new(run_params)
-  #   if @new_run.save
-  #     respond_to do |format|
-  #       format.js
-  #       format.html { redirect_to runs_path }
-  #     end 
-  #   else
-  #     respond_to do |format|
-  #       format.js {render plain: '0'}
-  #       format.html { render :new }
-  #     end
-  #   end
-  # end
-
   def create
     @runs = Run.most_recent_by_date.page(params[:page]).per(params[:per])
     @run_count = @runs.count
     @new_run = Run.new(run_params)
     if @new_run.save
       respond_to do |format|
-        format.js { render 'runs/index'}
+        format.js
         format.html { redirect_to runs_path }
       end 
     else
@@ -44,6 +29,23 @@ class RunsController < ApplicationController
       end
     end
   end
+
+  # def create
+  #   @runs = Run.most_recent_by_date.page(params[:page]).per(params[:per])
+  #   @run_count = @runs.count
+  #   @new_run = Run.new(run_params)
+  #   if @new_run.save
+  #     respond_to do |format|
+  #       format.js { render 'runs/index'}
+  #       format.html { redirect_to runs_path }
+  #     end 
+  #   else
+  #     respond_to do |format|
+  #       format.js {render plain: '0'}
+  #       format.html { render :new }
+  #     end
+  #   end
+  # end
 
   def show
     @run = Run.find(params[:id])

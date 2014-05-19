@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140515163153) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "runs", force: true do |t|
     t.date    "run_date"
     t.float   "distance"

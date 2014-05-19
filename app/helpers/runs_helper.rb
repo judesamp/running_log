@@ -5,12 +5,16 @@ module RunsHelper
   end
 
   def pretty_time(minutes)
-    hours = minutes / 60
-    minutes = minutes % 60
-    if hours == 0
-      "#{minutes}m"
+    if minutes.present?
+      hours = minutes / 60
+      minutes = minutes % 60
+      if hours == 0
+        "#{minutes}m"
+      else
+        "#{hours}h, #{minutes}m"
+      end
     else
-      "#{hours}h, #{minutes}m"
+      "0h, 0m"
     end
   end
 
