@@ -51,7 +51,6 @@ $ ->
   $(document).on "submit", "#new_run", (e) ->
     $('#new_run').on 'ajax:complete', (event, data, status, xhr) ->
       my_data = $.parseJSON(data.responseText);
-      console.log(my_data);
       run_date = my_data.pretty_date;
       run_distance = my_data.data.distance;
       run_time = my_data.data.run_time
@@ -100,7 +99,21 @@ $ ->
       $(element_id_3).replaceWith(run_distance_string);
       $(element_id_4).replaceWith(pace_string);
 
- 
+  
+  $(document).on "click", ".delete_button", (e) ->
+    item_row = $(this).parents('tr');
+    run_id = $(this).attr('data-run-id');
+    url = "/runs/" + run_id;
+    $.ajax url,
+      type: 'POST',
+      data: {"_method":"delete"},
+      success: ->
+        $(item_row).remove();
+    return false
+
+
+
+
   
     
     

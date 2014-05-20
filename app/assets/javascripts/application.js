@@ -18,19 +18,4 @@
 
 
 
-$(function() {
-    $(document).on('click', '.delete_button', function() {
-      var item_row = $(this).parents('tr');
-      run_id = $(this).attr('data-run-id');
-      url = "/runs/" + run_id
-      $.ajax({
-        url: url,
-        type: "POST",
-        data: {"_method":"delete"}
-      }).success(function() {
-          console.log(item_row);
-          $(item_row).remove();
-      });
-    return false;
-  });
-});
+
