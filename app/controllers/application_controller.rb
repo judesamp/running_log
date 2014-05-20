@@ -14,15 +14,18 @@ class ApplicationController < ActionController::Base
   end
 
   def pretty_pace(pace)
-    time_pieces = pace.divmod 1
-    minutes = time_pieces[0]
-    seconds = time_pieces[1] * 0.6
-    seconds = seconds.round(2)
-    seconds = (seconds * 100).to_i
-    if seconds < 10
-      seconds = "0#{seconds}"
+    if pace == "0:00/mile"
+      "0:00/mile"
+    else
+      time_pieces = pace.divmod 1
+      minutes = time_pieces[0]
+      seconds = time_pieces[1] * 0.6
+      seconds = seconds.round(2)
+      seconds = (seconds * 100).to_i
+      if seconds < 10
+        seconds = "0#{seconds}"
+      end
+      "#{minutes}:#{seconds}/mile"
     end
-
-    "#{minutes}:#{seconds}/mile"
   end
 end
