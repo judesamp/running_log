@@ -65,8 +65,9 @@ class RunsController < ApplicationController
     @run = Run.find(params[:id])
     if @run.update(run_params)
       respond_to do |format|
-        puts @run.inspect
-        format.js {render json: @run}
+        processed_date = pretty_date(@run.run_date)
+        average_pace = pretty_pace(@run.per_mile_pace)
+        format.js {render json: { calculated_pace: average_pace, pretty_date: processed_date, data: @run} }
         format.html { redirect_to runs_path }
       end
     else
