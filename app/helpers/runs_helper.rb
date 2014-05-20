@@ -1,13 +1,5 @@
 module RunsHelper
 
-  def pretty_date(run_date)
-    if run_date.present?
-      run_date.strftime("%B %e")
-    else
-      "NA"
-    end
-  end
-
   def pretty_time(minutes)
     if minutes.present?
       hours = minutes / 60

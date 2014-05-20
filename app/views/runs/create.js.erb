@@ -11,8 +11,5 @@ $('#run_table_body').fadeOut('slow', function() {
 
 });
 
-$('#run_table_body').fadeIn();
 
-
-$('tbody').append("<%= escape_javascript render(:partial => 'runs/run_row_create', :locals => { :run => @new_run })%>");
 
