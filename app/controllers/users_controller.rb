@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_filter :ensure_logged_in, only: [:index, :new, :create]
+  skip_filter :ensure_logged_in
 
   def index
     @users = User.all
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to user_runs_path(@user)
     else
-      redirect_to users_path, notice: "Something went wrong:) Please try loggin in again."
+      redirect_to users_path, notice: "Something went wrong:) Please try logging in again."
     end
   end
 
