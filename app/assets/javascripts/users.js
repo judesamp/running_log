@@ -21,40 +21,44 @@ $(function() {
 
   $(document).on('click', '#last_seven', function(e) {
     e.preventDefault();
-    value = $(this).attr('id')
+    var value = $(this).attr('id');
+    var user_id = $(this).attr('data-user-id');
     $.ajax ({
-      url: '/runs/filter',
+      url: '/users/' + user_id + '/runs/filter',
       type: 'GET',
       data: { "filter": {"type": value} }
     });
   });
 
-  $(document).on('click', '#last_thirty', function() {
+  $(document).on('click', '#last_thirty', function(e) {
     e.preventDefault();
-    value = $(this).attr('id')
+    var value = $(this).attr('id');
+    var user_id = $(this).attr('data-user-id');
     $.ajax ({
-      url: '/runs/filter',
+      url: '/users/' + user_id + '/runs/filter',
       type: 'GET',
       data: { "filter": {"type": value} }
     });
     
   });
 
-  $(document).on('click', '#last_year', function() {
+  $(document).on('click', '#year', function(e) {
     e.preventDefault();
-    value = $(this).attr('id')
+    var value = $(this).attr('id')
+    var user_id = $(this).attr('data-user-id');
     $.ajax ({
-      url: '/runs/filter',
+      url: '/users/' + user_id + '/runs/filter',
       type: 'GET',
       data: { "filter": {"type": value} }
     });
   });
 
-  $(document).on('click', '#lifetime', function() {
+  $(document).on('click', '#lifetime', function(e) {
     e.preventDefault();
-    value = $(this).attr('id')
+    var value = $(this).attr('id');
+    var user_id = $(this).attr('data-user-id');
     $.ajax ({
-      url: '/runs/filter',
+      url: '/users/' + user_id + '/runs/filter',
       type: 'GET',
       data: { "filter": {"type": value} }
     });
@@ -127,7 +131,7 @@ $(function() {
   $(document).on('click', '.delete_button', function() {
     var item_row = $(this).parents('tr');
     var run_id = $(this).attr('data-run-id');
-    user_id = $(this).attr('data-user-id');
+    var user_id = $(this).attr('data-user-id');
     var current_url = "/users/" + user_id +"/runs/" + run_id;
     $.ajax ({
       url: current_url,

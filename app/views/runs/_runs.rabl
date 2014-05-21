@@ -1,2 +1,0 @@
-object @run
-attributes :distance

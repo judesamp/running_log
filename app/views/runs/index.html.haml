@@ -9,13 +9,13 @@
         %span.caret
       %ul.dropdown-menu
         %li
-          %a{id: "last_seven", href: "#"} The Last Seven Days
+          %a{id: "last_seven", href: "#", data: { "user-id" => current_user.id }} The Last Seven Days
         %li
-          %a{id: "last_thirty", href: "#"} The Last Thirty Days
+          %a{id: "last_thirty", href: "#", data: { "user-id" => current_user.id }} The Last Thirty Days
         %li
-          %a{id: "year", href: "#"} This Year's Stats
+          %a{id: "year", href: "#", data: { "user-id" => current_user.id }} This Year's Stats
         %li
-          %a{id: "lifetime", href: "#"} Lifetime Stats
+          %a{id: "lifetime", href: "#", data: { "user-id" => current_user.id }} Lifetime Stats
   %table.table.stats_table  
     %thead
       %tr
