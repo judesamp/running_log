@@ -76,7 +76,7 @@ $(function() {
       $('#fade').fadeOut();
     
       $('#run_table_body').prepend(
-        '<tr>' + '<td class="stat_data run_cell">' + run_date + '</td>'+ 
+        '<tr id="' + run_id + '">' + '<td class="stat_data run_cell">' + run_date + '</td>'+ 
           '<td class="stat_data run_cell">' + run_time + '</td>' +
           '<td class="stat_data run_cell">' + run_distance + '</td>'+
           '<td class="stat_data run_cell">' + pace + '</td>' +
@@ -92,7 +92,7 @@ $(function() {
   $(document).on('submit', '.edit_run', function() {
     
     $('.edit_run').on('ajax:complete', function(event, data, status, xhr) {
-      alert('hello');
+     
       var my_data = $.parseJSON(data.responseText);
       var run_date = my_data.run.run_date;
       var run_distance = my_data.run.distance;
@@ -113,12 +113,14 @@ $(function() {
       var pace_string = '<td class="stat_data run_cell">' + pace + '</td>';
 
      
-      $('#edit_modal').fadeOut();
-      $('#fade').fadeOut();
+      
       $(element_id_1).replaceWith(run_date_string);
       $(element_id_2).replaceWith(run_time_string);
       $(element_id_3).replaceWith(run_distance_string);
       $(element_id_4).replaceWith(pace_string);
+
+      $('#edit_modal').fadeOut();
+      $('#fade').fadeOut();
     });
   });
 
