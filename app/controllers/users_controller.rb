@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to user_runs_path(@user)
+      session[:user_id] = user.id
+      redirect_to user_runs_path(user), notice: "Thanks for signing up. You've also been logged in."
     else
       redirect_to users_path, notice: "Something went wrong:) Please try logging in again."
     end

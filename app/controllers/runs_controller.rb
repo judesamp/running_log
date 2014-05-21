@@ -21,10 +21,9 @@ class RunsController < ApplicationController
     @run_count = @runs.count
     @new_run = Run.new(run_params)
     if @new_run.save
-      session[:user_id] = user.id
       respond_to do |format|
         format.js { render @new_run }
-        format.html { redirect_to user_runs_path(user), notice: "Thanks for signing up. You've also been logged in." }
+        format.html { redirect_to runs_path }
       end 
     else
       respond_to do |format|
