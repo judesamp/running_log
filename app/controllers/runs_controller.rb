@@ -1,7 +1,7 @@
 class RunsController < ApplicationController
 
   def index
-    @runs = Run.most_recent_by_date.page(params[:page]).per(params[:per])
+    @runs = current_user.runs.most_recent_by_date.page(params[:page]).per(params[:per])
     @run_count = @runs.count
     @user = current_user
     respond_to do |format|

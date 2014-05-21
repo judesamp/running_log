@@ -32,10 +32,10 @@
           .glyphicon.glyphicon-time
           Average Pace
       %tr.stat_row
-        %td.stat_data= "#{Run.count} runs"
-        %td.stat_data= pretty_time(Run.total_time)
-        %td.stat_data= "#{Run.total_distance}m"
-        %td.stat_data= pretty_pace(Run.all_time_per_mile_pace)
+        %td.stat_data= "#{ current_user.runs.count } runs"
+        %td.stat_data= pretty_time(Run.total_time(current_user))
+        %td.stat_data= "#{ Run.total_distance(current_user) }m"
+        %td.stat_data= pretty_pace( Run.all_time_per_mile_pace(current_user) )
 
 .col-md-3.col-sm-3
   %h1.run_title Your Runs
