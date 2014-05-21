@@ -24,7 +24,7 @@ class RunsController < ApplicationController
       session[:user_id] = user.id
       respond_to do |format|
         format.js { render @new_run }
-        format.html { redirect_to user_runs_path(user), notice: "logged in" }
+        format.html { redirect_to user_runs_path(user), notice: "Thanks for signing up. You've also been logged in." }
       end 
     else
       respond_to do |format|
