@@ -1,0 +1,2 @@
+object @run
+attributes :distance

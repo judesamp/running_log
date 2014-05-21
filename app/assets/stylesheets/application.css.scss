@@ -30,7 +30,7 @@
 
 #fade {
   display: none;  
-  position: absolute; 
+  position: fixed; 
   left: 0%; 
   top: 0%;
   background-color: black;
@@ -138,5 +138,11 @@
 
  .red {
   color: red;
+ }
+
+ .right_edge {
+  position: absolute;
+  right: 20px;
+  top: 5px;
  }
 

@@ -11,20 +11,33 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>
+      </button> -->
       <a class="navbar-brand" href="/">RunningLog</a>
+      <% if current_user %>
+
+        <span class="right_edge btn btn-default logout_button">Logout</span>
+
+        <%= link_to "Logout", logout_path, class: "right_edge btn btn-default logout_button" %>
+
+      <% else %>
+
+        <span class="right_edge btn btn-default login_button" href="#">Login</span>
+
+
+      <% end %>
+ 
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <!--   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> -->
 
 
-    <div class="nav navbar-nav navbar-right">
+  <div class="nav navbar-nav navbar-right">
     </nav>
       <% if flash[:notice] %>
         <div class="alert-message warning">
@@ -43,6 +56,13 @@
 
 <%= yield %>
 
+</div>
+
+<div class="login_modal modal_custom">
+  <%= render 'sessions/new'%>
+</div>
+
+<div id="fade">
 </div>
 
 </body>

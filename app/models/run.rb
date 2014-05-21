@@ -1,4 +1,5 @@
 class Run < ActiveRecord::Base
+  belongs_to :user
   before_validation :init_data
 
   validates_presence_of :run_time
