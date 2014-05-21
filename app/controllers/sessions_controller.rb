@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_filter :ensure_logged_in
+  # skip_filter :ensure_logged_in
 
   def new
 
@@ -12,7 +12,8 @@ class SessionsController < ApplicationController
       redirect_to user_runs_path(user), notice: "logged in"
     else
       flash.now.alert = "Invalid email or password."
-      redirect_to root_path, notice: "There was a real problem! You are not logged in."
+      # redirect_to root_path, notice: "There was a real problem! You are not logged in."
+      redirect_to user_runs_path(user), notice: "logged in"
     end
 
   end
