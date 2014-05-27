@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def pretty_date(run_date)
     if run_date.present?
       run_date.strftime("%B %e")

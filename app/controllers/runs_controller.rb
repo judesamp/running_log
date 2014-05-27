@@ -1,4 +1,5 @@
 class RunsController < ApplicationController
+  before_filter :ensure_run_ownership
 
   def index
     @runs = current_user.runs.most_recent_by_date.page(params[:page]).per(params[:per])
@@ -127,6 +128,12 @@ class RunsController < ApplicationController
 
   def run_params
     params.require(:run).permit(:run_date, :run_time, :route_name, :distance, :notes, :user_id)
+  end
+
+  def ensure_run_ownership
+    if params[:user_id] != current_user.id.to_s
+      redirect_to root_path, notice: "You don't have permission to view this page."
+    end
   end
 
 end
