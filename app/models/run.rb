@@ -21,13 +21,13 @@ class Run < ActiveRecord::Base
     end
   end
 
-  def self.total_time(current_user)
-    run_times = current_user.runs.all.pluck(:run_time)
+  def self.total_time(runs)
+    run_times = runs.all.pluck(:run_time)
     run_times.reduce(:+)
   end
 
-  def self.total_distance(current_user)
-    distances = current_user.runs.all.pluck(:distance)
+  def self.total_distance(runs)
+    distances = runs.all.pluck(:distance)
     if distances.length > 0
       distances.reduce(:+).round(2)
     else
@@ -35,9 +35,9 @@ class Run < ActiveRecord::Base
     end
   end
 
-  def self.all_time_per_mile_pace(current_user)
-    run_time = total_time(current_user)
-    distance = total_distance(current_user)
+  def self.all_time_per_mile_pace(runs)
+    run_time = total_time(runs)
+    distance = total_distance(runs)
     if distance > 0 && run_time > 0
       run_time / distance
     else

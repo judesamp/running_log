@@ -1,0 +1,61 @@
+send back from rails as:
+  js.erb
+  js
+  plain
+  json
+
+js receives and handles it
+
+steps:
+  add remote true
+  serialize it
+  request (post, put, whatever)
+  in controller: format.js {render json: @item}
+  .success(function(json) {
+    var name= json.name
+
+  })
+
+$(function() {
+  $('form#new_item').on('submit', function() {
+    var params = $(this).serialize();
+    $.ajax({
+      url:,
+      type: "POST",
+      data: params,
+      dataType: "JSON"
+    }).success(function() {
+      var name = json.name;
+      $('#itemlist').append('<li>' + name "</li>");
+    });
+    return false;
+  });
+});
+
+
+<td><form action="/runs/117" class="button_to" data-remote="true" method="get"><div><input class="btn btn-default" type="submit" value="View Details"></div></form></td>
+
+
+
+
+
+#2 : still has remote true
+
+$('form').on('ajax:complete'), function(event, data, status, xhr) {
+  var item = data.responseText,
+  name = data.name;
+
+  $('#itemlist').append('<li>' + name "</li>");
+
+}
+
+$('form').on('ajax:complete'), function(event, data, status, xhr) {
+  var item = data.responseText,
+  item_li = document.getElementById(data.id);
+  name = data.name;
+
+  $('#item_li').replace('<li>' + name "</li>");
+
+}
+
+.getElementById(data.id)

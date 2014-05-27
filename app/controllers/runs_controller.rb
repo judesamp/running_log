@@ -105,16 +105,16 @@ class RunsController < ApplicationController
     case filter_type
     when "last_seven"
       @filter = "Weekly"
-      @filtered_runs = Run.in_the_last_week
+      @filtered_runs = current_user.runs.in_the_last_week
     when "last_thirty"
       @filter = "Monthly"
-      @filtered_runs = Run.in_the_last_thirty_days
+      @filtered_runs = current_user.runs.in_the_last_thirty_days
     when "year"
       @filter = "Yearly"
-      @filtered_runs = Run.in_the_last_year
+      @filtered_runs = current_user.runs.in_the_last_year
     when "lifetime"
       @filter = "Lifetime"
-      @filtered_runs = Run.most_recent_by_date
+      @filtered_runs = current_user.runs.most_recent_by_date
     end
 
     respond_to do |format|
@@ -129,7 +129,4 @@ class RunsController < ApplicationController
     params.require(:run).permit(:run_date, :run_time, :route_name, :distance, :notes, :user_id)
   end
 
-  def filter_params
-    params.require(:filter).permit(:type)
-  end
 end

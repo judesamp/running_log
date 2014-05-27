@@ -20,7 +20,7 @@
       <a class="navbar-brand" href="/">RunningLog</a>
       <% if current_user %>
 
-        <span class="right_edge btn btn-default logout_button">Logout</span>
+        <%= link_to "Dashboard", user_runs_path(current_user), class: "right_edge2 btn btn-default" %>
 
         <%= link_to "Logout", logout_path, class: "right_edge btn btn-default logout_button" %>
 
