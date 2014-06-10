@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: runs
+#
+#  id         :integer          not null, primary key
+#  run_date   :date
+#  distance   :float
+#  route_name :string(255)
+#  notes      :text
+#  run_time   :integer
+#  user_id    :integer
+#
+
 class Run < ActiveRecord::Base
   belongs_to :user
   before_validation :init_data

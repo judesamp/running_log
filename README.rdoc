@@ -1,28 +1,25 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 
 
-Things you may want to cover:
+An app designed to track runs over time. Also originally an app meant to encourage practice ajax and rabl! 
 
-* Ruby version
+## Installation / Setup
 
-* System dependencies
+Clone Repo locally. Install gems:
 
-* Configuration
+    bundle install
 
-* Database creation
+Set up database. We are using sqlite.
 
-* Database initialization
+    rake db:create db:migrate
 
-* How to run the test suite
+I haven't written any tests for this app yet.
 
-* Services (job queues, cache servers, search engines, etc.)
+## Contributing
 
-* Deployment instructions
+I'm always open to contributions.
 
-* ...
+## License
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+MIT License. Yay!

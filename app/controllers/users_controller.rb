@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   skip_filter :ensure_logged_in
 
+  # GET /users
+  # returns all users
   def index
     @users = User.all
   end
@@ -8,6 +10,8 @@ class UsersController < ApplicationController
   def new
   end
 
+  # POST /users
+  # creates a new user
   def create
     @user = User.new(user_params)
     if @user.save

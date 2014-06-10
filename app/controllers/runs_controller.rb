@@ -1,6 +1,8 @@
 class RunsController < ApplicationController
   before_filter :ensure_run_ownership
 
+  # GET users/:id/runs
+  # returns all runs connected to current user
   def index
     @runs = current_user.runs.most_recent_by_date.page(params[:page]).per(params[:per])
     @run_count = @runs.count
@@ -12,10 +14,15 @@ class RunsController < ApplicationController
     end
   end
 
+
+  # GET users/:id/runs/new
+  # returns a blank new run, connected to form shown here
   def new
     @run = Run.new
   end
 
+  # POST users/:id/runs
+  # creates and return a run, overall run count, and current user
   def create
     @runs = Run.most_recent_by_date.page(params[:page]).per(params[:per])
     @current_user = current_user
@@ -34,32 +41,19 @@ class RunsController < ApplicationController
     end
   end
 
-  # def create
-  #   @runs = Run.most_recent_by_date.page(params[:page]).per(params[:per])
-  #   @run_count = @runs.count
-  #   @new_run = Run.new(run_params)
-  #   if @new_run.save
-  #     respond_to do |format|
-  #       format.js { render 'runs/index'}
-  #       format.html { redirect_to runs_path }
-  #     end 
-  #   else
-  #     respond_to do |format|
-  #       format.js {render plain: '0'}
-  #       format.html { render :new }
-  #     end
-  #   end
-  # end
-
+  # GET users/:id/runs/:id
+  # returns specific run, based on id
   def show
     @run = Run.find(params[:id])
     respond_to do |format|
-        format.js {render @run}
-        format.json {render @run}
-        format.html { redirect_to runs_path }
-      end
+      format.js {render @run}
+      format.json {render @run}
+      format.html { redirect_to runs_path }
+    end
   end
 
+  # GET users/:id/runs/edit
+  # find a run, ready for update (through form)
   def edit
     @run = Run.find(params[:id])
     respond_to do |format|
@@ -68,6 +62,8 @@ class RunsController < ApplicationController
     end
   end
 
+  # PUT users/:id/runs/:id
+  # updates specific run based on id
   def update
     @run = Run.find(params[:id])
     if @run.update(run_params)
@@ -85,6 +81,8 @@ class RunsController < ApplicationController
     end
   end
 
+  # DELETE users/:id/runs/:id
+  # destroys specific run based on id
   def destroy
     @run = Run.find(params[:id])
     @id = @run.id
@@ -101,6 +99,8 @@ class RunsController < ApplicationController
     end
   end
 
+  #GET users/:id/runs/filter
+  #filters all runs based on user-selected criteria
   def filter
     filter_type = params[:filter][:type]
     case filter_type

@@ -2,9 +2,10 @@ class SessionsController < ApplicationController
   skip_filter :ensure_logged_in
 
   def new
-
   end
 
+  # POST /login
+  # create session/login user
   def create
     user = User.find_by_email(params[:email]).try(:authenticate, params[:password])
     puts user
@@ -14,9 +15,10 @@ class SessionsController < ApplicationController
     else
       redirect_to root_path, notice: "There was a real problem! You are not logged in."
     end
-
   end
 
+  # DELETE /session/:id
+  # delete session/logout user
   def destroy
     session[:user_id] = nil
     redirect_to root_path, notice: "You logged out!"
