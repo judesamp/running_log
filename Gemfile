@@ -18,6 +18,7 @@ gem 'kaminari'
 gem 'rabl'
 gem 'oj'
 gem 'rails_12factor',   group: :production
+gem 'unicorn'
 
 group :development, :test do
   gem 'annotate', ">=2.6.0"

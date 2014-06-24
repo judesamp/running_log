@@ -5,6 +5,9 @@
 %p= pretty_date(run.run_date)
 %p= pretty_time(run.run_time)
 %p= run.distance
+= pluralize(run.distance, "mile")
 %p= pretty_pace(run.per_mile_pace)
-%p= run.route_name
-%p= run.notes
+- if run.route_name.present? 
+	%p= run.route_name
+- if run.notes.present? 
+	%p= run.notes

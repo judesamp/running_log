@@ -2,6 +2,7 @@ object @run
 attributes :distance
 attributes :run_time
 attributes :notes
+attributes :route_name
 attributes :id
 attributes :user_id
 node(:run_date) { |run| pretty_date(run.run_date)}

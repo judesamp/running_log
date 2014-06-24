@@ -81,14 +81,25 @@ $(function() {
     
       $('#run_table_body').prepend(
         '<tr id="' + run_id + '">' + '<td class="stat_data run_cell">' + run_date + '</td>'+ 
-          '<td class="stat_data run_cell">' + run_time + '</td>' +
-          '<td class="stat_data run_cell">' + run_distance + '</td>'+
+          '<td class="stat_data run_cell">' + run_time + 'm</td>' +
+          '<td class="stat_data run_cell">' + run_distance + 'm</td>'+
           '<td class="stat_data run_cell">' + pace + '</td>' +
             '<td><form action="/users/' + user_id + '/runs/' + run_id + '" class="button_to" data-remote="true" method="get"><div><input class="btn btn-default view_button" data-user-id="' + user_id + '" data-run-id="' + run_id + '" type="submit" value="View Details"></div></form></td>' +
           "<td><button class='btn btn-default edit_button' data-run-id='" + run_id +
              "' id='edit_button'>Edit</button></td>" +
              '<td><button class="btn btn-default delete_button" data-user-id="' + user_id + '" data-run-id="' + run_id + '">Delete</button></td>' +
              '</tr>')
+
+      var value = $('.filter_name').text();
+      value = value.toLowerCase();
+      alert(value);
+
+      $.ajax ({
+        url: '/users/' + user_id + '/runs/filter',
+        type: 'GET',
+        data: { "filter": {"type": value} }
+      });
+
     });
   });
 
@@ -171,18 +182,17 @@ $(function() {
       var run_time = response.run.run_time;
       var pace = response.run.pace;
       var notes = response.run.notes;
-      var route = response.run.route;
+      var route = response.run.route_name;
       var runs = response.run.runs;
-      console.log();
+      console.log(response);
 
-      var the_page =  '<div class="close glyphicon glyphicon-remove"></div>' +
-                      '<h1>Your Run</h1>' +
-                      '<p>' + run_date + '</p>' +
-                      '<p>' + run_distance + '</p>' +
-                      '<p>' + run_time + '</p>' +
-                      '<p>' + pace + '</p>' +
-                      '<p>' + notes + '</p>' +
-                      '<p>' + route + '</p>';
+      var the_page =  '<div class="close glyphicon glyphicon-remove"></div><br><br>' +
+                      '<h2 class="centered show_title">Your Run for ' + run_date +  '</h2>' +
+                      '<div class="show_container"><h5 class="">' + run_distance + ' mile(s)</h5>' +
+                      '<h5 class="">' + run_time + ' minutes</h5>' +
+                      '<h5 class="">' + pace + '</h5>' +
+                      '<h5>Notes:' + notes + '</h5>' +
+                      '<h5>Route:' + route + '</h5></div>';
 
       $('#show_modal').html(the_page);
       $('#fade').fadeIn();

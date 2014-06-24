@@ -2,7 +2,7 @@
   %tr{id: run.id}
     %td.stat_data.run_cell= pretty_date(run.run_date)
     %td.stat_data.run_cell= pretty_time(run.run_time)
-    %td.stat_data.run_cell= run.distance
+    %td.stat_data.run_cell= "#{run.distance}m"
     %td.stat_data.run_cell= pretty_pace(run.per_mile_pace)
     %td
       %button{class: "btn btn-default view_button", data: {"run-id" => run.id, "user-id" => current_user.id}}

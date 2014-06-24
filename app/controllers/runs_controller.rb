@@ -104,13 +104,13 @@ class RunsController < ApplicationController
   def filter
     filter_type = params[:filter][:type]
     case filter_type
-    when "last_seven"
+    when "last_seven", "weekly"
       @filter = "Weekly"
       @filtered_runs = current_user.runs.in_the_last_week
-    when "last_thirty"
+    when "last_thirty", "monthly"
       @filter = "Monthly"
       @filtered_runs = current_user.runs.in_the_last_thirty_days
-    when "year"
+    when "year", "yearly"
       @filter = "Yearly"
       @filtered_runs = current_user.runs.in_the_last_year
     when "lifetime"
