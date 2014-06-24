@@ -87,7 +87,7 @@ $(function() {
             '<td><form action="/users/' + user_id + '/runs/' + run_id + '" class="button_to" data-remote="true" method="get"><div><input class="btn btn-default view_button" data-user-id="' + user_id + '" data-run-id="' + run_id + '" type="submit" value="View Details"></div></form></td>' +
           "<td><button class='btn btn-default edit_button' data-run-id='" + run_id +
              "' id='edit_button'>Edit</button></td>" +
-             '<td><button class="btn btn-default delete_button" data-run-id="' + run_id + '">Delete</button></td>' +
+             '<td><button class="btn btn-default delete_button" data-user-id="' + user_id + '" data-run-id="' + run_id + '">Delete</button></td>' +
              '</tr>')
     });
   });
