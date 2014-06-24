@@ -1,12 +1,6 @@
 class UsersController < ApplicationController
   skip_filter :ensure_logged_in
 
-  # GET /users
-  # returns all users
-  def index
-    @users = User.all
-  end
-
   def new
   end
 

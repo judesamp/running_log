@@ -21,9 +21,21 @@ gem 'rails_12factor',   group: :production
 gem 'unicorn'
 
 group :development, :test do
+	gem 'rspec-rails'
+  gem 'guard'
+  gem 'guard-rspec', require: false
+  gem 'terminal-notifier-guard', '~> 1.5.3'
+  gem 'terminal-notifier', '~> 1.5.1'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'launchy'
+  gem 'spring'
+  gem 'debugger'
   gem 'annotate', ">=2.6.0"
   gem 'railroady'
 end
+
 
 
 

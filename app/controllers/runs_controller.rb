@@ -14,7 +14,6 @@ class RunsController < ApplicationController
     end
   end
 
-
   # GET users/:id/runs/new
   # returns a blank new run, connected to form shown here
   def new
@@ -31,7 +30,7 @@ class RunsController < ApplicationController
     if @new_run.save
       respond_to do |format|
         format.js { render @new_run }
-        format.html { redirect_to runs_path }
+        format.html { redirect_to user_runs_path }
       end 
     else
       respond_to do |format|
@@ -48,7 +47,7 @@ class RunsController < ApplicationController
     respond_to do |format|
       format.js {render @run}
       format.json {render @run}
-      format.html { redirect_to runs_path }
+      format.html { redirect_to user_runs_path }
     end
   end
 
@@ -58,7 +57,7 @@ class RunsController < ApplicationController
     @run = Run.find(params[:id])
     respond_to do |format|
       format.js
-      format.html
+      format.html { redirect_to user_runs_path }
     end
   end
 
@@ -66,12 +65,12 @@ class RunsController < ApplicationController
   # updates specific run based on id
   def update
     @run = Run.find(params[:id])
-    if @run.update(run_params)
+    if @run.update_attributes(run_params)
       respond_to do |format|
         # processed_date = pretty_date(@run.run_date)
         # average_pace = pretty_pace(@run.per_mile_pace)
         format.js {render @run}
-        format.html { redirect_to runs_path }
+        format.html { redirect_to user_runs_path }
       end
     else
       respond_to do |format|
@@ -89,7 +88,7 @@ class RunsController < ApplicationController
     if @run.destroy
       respond_to do |format|
         format.js {render plain: '1'}
-        format.html {redirect_to runs_path}
+        format.html {redirect_to user_runs_path}
       end
     else
       respond_to do |format|
