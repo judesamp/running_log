@@ -92,7 +92,6 @@ $(function() {
 
       var value = $('.filter_name').text();
       value = value.toLowerCase();
-      alert(value);
 
       $.ajax ({
         url: '/users/' + user_id + '/runs/filter',
