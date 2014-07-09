@@ -74,7 +74,6 @@ $(function() {
       var pace = my_data.run.pace;
       var run_id = my_data.run.run_id;
       var user_id = my_data.run.user_id;
-      
 
       $('#create_modal').fadeOut();
       $('#fade').fadeOut();
@@ -85,7 +84,7 @@ $(function() {
           '<td class="stat_data run_cell">' + run_distance + 'm</td>'+
           '<td class="stat_data run_cell">' + pace + '</td>' +
             '<td><form action="/users/' + user_id + '/runs/' + run_id + '" class="button_to" data-remote="true" method="get"><div><input class="btn btn-default view_button" data-user-id="' + user_id + '" data-run-id="' + run_id + '" type="submit" value="View Details"></div></form></td>' +
-          "<td><button class='btn btn-default edit_button' data-run-id='" + run_id +
+          "<td><button class='btn btn-default edit_button' data-user-id='" + user_id + "' data-run-id='" + run_id +
              "' id='edit_button'>Edit</button></td>" +
              '<td><button class="btn btn-default delete_button" data-user-id="' + user_id + '" data-run-id="' + run_id + '">Delete</button></td>' +
              '</tr>')
@@ -104,9 +103,8 @@ $(function() {
 
 
   $(document).on('submit', '.edit_run', function() {
-    
     $('.edit_run').on('ajax:complete', function(event, data, status, xhr) {
-     
+      
       var my_data = $.parseJSON(data.responseText);
       var run_date = my_data.run.run_date;
       var run_distance = my_data.run.distance;
@@ -200,6 +198,11 @@ $(function() {
 
     });  
   });
+});
+
+$(document).on('click', '.edit_button', function() {
+  $('.edit_modal').fadeIn();
+  $('#fade').fadeIn();
 });
 
 
