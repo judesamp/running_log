@@ -17,7 +17,7 @@ class RunsController < ApplicationController
   # GET users/:id/runs/new
   # returns a blank new run, connected to form shown here
   def new
-    @run = Run.new
+    @run = Run.new(:run_date => Date.today)
   end
 
   # POST users/:id/runs
