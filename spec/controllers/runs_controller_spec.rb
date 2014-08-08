@@ -24,8 +24,6 @@ describe RunsController do
 			expect(assigns(:current_user)).to eq run.user
 		end
 
-		#still to do: text javascript, json responses
-
 	end
 
 	describe "GET #new" do
@@ -93,7 +91,6 @@ describe RunsController do
 
 	end
 
-
 	describe "DELETE #destroy" do
 
 		it "should delete specified run" do
@@ -112,22 +109,97 @@ describe RunsController do
 	end
 
 	describe "GET #filter" do
+   
+    context "the last week filter" do
+    	let(:run1) { user.runs.create!(FactoryGirl.attributes_for(:run, run_date: Date.today, run_time: 45, distance: 3.8)) }
+    	let(:run2) { user.runs.create!(FactoryGirl.attributes_for(:run, run_date: Date.today - 1, run_time: 45, distance: 3.8)) }
+    	let(:run3) { user.runs.create!(FactoryGirl.attributes_for(:run, run_date: Date.today - 8, run_time: 65, distance: 5.8)) }
+
+    	it "should return all user runs that match filter (last_seven)" do
+    		login(user)
+    		xhr :get, :filter, user_id: user, :filter => { :type => "last_seven" }, :format => "js"
+    		expect(assigns(:filtered_runs)).to eq [run1, run2]
+    	end
+
+    	it "should return all user runs that match filter (weekly)" do
+    		login(user)
+    		xhr :get, :filter, user_id: user, :filter => { :type => "weekly" }, :format => "js"
+    		expect(assigns(:filtered_runs)).to eq [run1, run2]
+    	end
+
+    	it "should not return all user runs that do not match filter" do
+    		login(user)
+    		xhr :get, :filter, user_id: user, :filter => { :type => "last_seven" }, :format => "js"
+    		expect(assigns(:filtered_runs)).to_not include run3
+  		end
+
+  	end
+
+  	context "the last month filter" do
+  		let(:run1) { user.runs.create!(FactoryGirl.attributes_for(:run, run_date: Date.today, run_time: 45, distance: 3.8)) }
+    	let(:run2) { user.runs.create!(FactoryGirl.attributes_for(:run, run_date: Date.today - 1, run_time: 45, distance: 3.8)) }
+    	let(:run3) { user.runs.create!(FactoryGirl.attributes_for(:run, run_date: Date.today - 32, run_time: 65, distance: 5.8)) }
+
+
+    	it "should return all user runs that match filter (last_thirty)" do
+    		login(user)
+    		xhr :get, :filter, user_id: user, :filter => { :type => "last_thirty" }, :format => "js"
+    		expect(assigns(:filtered_runs)).to eq [run1, run2]
+    	end
+
+    	it "should return all user runs that match filter (monthly)" do
+    		login(user)
+    		xhr :get, :filter, user_id: user, :filter => { :type => "monthly" }, :format => "js"
+    		expect(assigns(:filtered_runs)).to eq [run1, run2]
+    	end
+
+    	it "should not return all user runs that do not match filter" do
+    		login(user)
+    		xhr :get, :filter, user_id: user, :filter => { :type => "last_thirty" }, :format => "js"
+    		expect(assigns(:filtered_runs)).to_not include run3
+  		end
+
+  	end
+
+  	context "the last year filter" do
+    	let(:run1) { user.runs.create!(FactoryGirl.attributes_for(:run, run_date: Date.today, run_time: 45, distance: 3.8)) }
+    	let(:run2) { user.runs.create!(FactoryGirl.attributes_for(:run, run_date: Date.today - 1, run_time: 45, distance: 3.8)) }
+    	let(:run3) { user.runs.create!(FactoryGirl.attributes_for(:run, run_date: Date.today - 366, run_time: 65, distance: 5.8)) }
+
+
+    	it "should return all user runs that match filter (year)" do
+    		login(user)
+    		xhr :get, :filter, user_id: user, :filter => { :type => "year" }, :format => "js"
+    		expect(assigns(:filtered_runs)).to eq [run1, run2]
+    	end
+
+    	it "should return all user runs that match filter (monthly)" do
+    		login(user)
+    		xhr :get, :filter, user_id: user, :filter => { :type => "yearly" }, :format => "js"
+    		expect(assigns(:filtered_runs)).to eq [run1, run2]
+    	end
+
+    	it "should not return all user runs that do not match filter" do
+    		login(user)
+    		xhr :get, :filter, user_id: user, :filter => { :type => "year" }, :format => "js"
+    		expect(assigns(:filtered_runs)).to_not include run3
+  		end
+  	end
+
+  	context "the lifetime filter" do
+
+  		let(:run1) { user.runs.create!(FactoryGirl.attributes_for(:run, run_date: Date.today, run_time: 45, distance: 3.8)) }
+    	let(:run2) { user.runs.create!(FactoryGirl.attributes_for(:run, run_date: Date.today - 1, run_time: 45, distance: 3.8)) }
+    	let(:run3) { user.runs.create!(FactoryGirl.attributes_for(:run, run_date: Date.today - 366, run_time: 65, distance: 5.8)) }
+
+    	it "should return all user runs that match filter" do
+    		login(user)
+    		xhr :get, :filter, user_id: user, :filter => { :type => "lifetime" }, :format => "js"
+    		expect(assigns(:filtered_runs)).to eq [run1, run2, run3]
+    	end
+
+  	end
+
 	end
 
 end
-
-# def edit
-#     @run = Run.find(params[:id])
-#     respond_to do |format|
-#       format.js
-#       format.html
-#     end
-#   end
-
-# @expected = { 
-#         :flashcard  => @flashcard,
-#         :lesson     => @lesson,
-#         :success    => true
-# }.to_json
-# get :action # replace with action name / params as necessary
-# response.body.should == @expected
